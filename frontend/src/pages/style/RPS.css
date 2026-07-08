@@ -1,0 +1,363 @@
+.rps-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Press Start 2P', cursive;
+  color: #fff;
+  position: relative;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.rps-scoreboard {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 12px 25px;
+  border-radius: 10px;
+  border: 2px solid #444;
+}
+
+.rps-scoreboard .score {
+  font-size: 3rem;
+}
+
+.rps-scoreboard .score.me {
+  color: #32e2b2;
+}
+
+.rps-scoreboard .score.opp {
+  color: #ff6b6b;
+}
+
+.rps-scoreboard .score-divider {
+  font-size: 2rem;
+  color: #888;
+}
+
+.rps-battle-area {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  flex-grow: 1;
+}
+
+.rps-player-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  min-width: 250px;
+  padding: 20px;
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+
+.rps-player-panel.winner {
+  border-color: #ffff00;
+  box-shadow: 0 0 20px #ffff00;
+}
+
+.rps-player-panel .avatar {
+  width: 80px;
+  object-fit: cover;
+}
+
+.rps-player-panel.me .avatar {
+  border-color: #32e2b2;
+}
+
+.rps-player-panel.opp .avatar {
+  border-color: #ff6b6b;
+}
+
+.rps-player-panel .username {
+  font-size: 1rem;
+  color: #ccc;
+}
+
+.rps-player-panel .hand-display {
+  font-size: 6rem;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rps-player-panel .status-indicator {
+  font-family: 'VT323', monospace;
+  font-size: 1.3rem;
+  color: #888;
+  height: 1em;
+}
+
+.rps-player-panel.me i {
+  rotate: 90deg;
+}
+.rps-player-panel.opp i {
+  rotate: -90deg;
+}
+.rps-player-panel.opp i.fa-hand-scissors {
+  transform: scaleX(0) rotate(-180deg);
+}
+
+.rps-center-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: 232px;
+}
+
+.round-timer {
+  width: 200px;
+  text-align: center;
+}
+
+.round-state-text {
+  font-size: 2rem;
+  padding: 10px 20px;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.3);
+  color: #fff;
+  transition: all 0.3s ease;
+  line-height: 1.3;
+}
+
+.round-state-text.won {
+  color: #32e2b2;
+  text-shadow: 0 0 10px #32e2b2;
+}
+
+.round-state-text.loss {
+  color: #ff6b6b;
+  text-shadow: 0 0 10px #ff6b6b;
+}
+
+.round-state-text.draw {
+  color: #ebca76;
+  text-shadow: 0 0 10px #ebca76;
+}
+
+.round-timer.urgent .round-state-text {
+  color: #ff6b6b;
+  animation: pulse-red 1s infinite;
+}
+
+.rps-selection-panel {
+  width: 100%;
+  max-width: 500px;
+  background: rgba(0, 0, 0, 0.5);
+  border: 2px solid #444;
+  border-radius: 15px;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+
+.rps-selection-panel.locked {
+  opacity: 0;
+  transform: translateY(20px);
+  pointer-events: none;
+}
+
+.selection-options {
+  display: flex;
+  gap: 40px;
+}
+
+.selection-options i {
+  font-size: 3.5rem;
+  color: #888;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.selection-options i:hover {
+  color: #fff;
+  transform: scale(1.1);
+}
+
+.selection-options i.selected {
+  color: #ffff00;
+  text-shadow: 0 0 10px #ffff00;
+}
+
+.lock-btn {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 1rem;
+  padding: 15px 30px;
+  background: #d90429;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 0 #8c001a;
+  transition: all 0.1s ease;
+}
+
+.lock-btn:disabled {
+  background: #555;
+  box-shadow: 0 4px 0 #333;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.lock-btn:not(:disabled):active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 #8c001a;
+}
+
+/* --- ANIMATIONS  --- */
+.shake-left {
+  animation: rps-shake-left 1.5s ease-in-out;
+}
+
+.shake-right {
+  animation: rps-shake-right 1.5s ease-in-out;
+}
+
+@keyframes rps-shake-left {
+
+  0%,
+  100% {
+    transform: translateY(0) rotate(0);
+  }
+
+  15%,
+  45%,
+  75% {
+    transform: translateY(-20px) rotate(-15deg);
+  }
+
+  30%,
+  60%,
+  90% {
+    transform: translateY(0) rotate(0);
+  }
+}
+
+@keyframes rps-shake-right {
+
+  0%,
+  100% {
+    transform: translateY(0) rotate(0);
+  }
+
+  15%,
+  45%,
+  75% {
+    transform: translateY(-20px) rotate(15deg);
+  }
+
+  30%,
+  60%,
+  90% {
+    transform: translateY(0) rotate(0);
+  }
+}
+
+@keyframes pulse-red {
+
+  0%,
+  100% {
+    text-shadow: 0 0 5px #ff6b6b;
+  }
+
+  50% {
+    text-shadow: 0 0 20px #ff6b6b;
+  }
+}
+
+
+
+
+@media (max-width: 750px) {
+  .rps-container {
+    gap: 15px;
+    padding: 15px 50px;
+  }
+
+  .rps-battle-area {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .rps-center-info {
+    margin: 10px 0;
+  }
+
+  .rps-player-panel {
+    width: 100%;
+    max-width: 400px;
+  }
+
+  .rps-scoreboard{order:1}
+  .rps-battle-area{order:3;}
+
+  .rps-container .rps-selection-panel {
+    order: 2;
+  }
+  .rps-selection-panel.locked {
+    opacity: 0.3;
+    transform: translateY(0px);
+  }
+  .selection-options i {
+    font-size: 2rem;
+  }
+  .selection-options {
+    gap: 20px;
+  }
+  .lock-btn {
+    font-size: 0.75rem;
+    padding: 10px 15px;
+  }
+}
+
+@media (max-width: 450px) {
+  .rps-player-panel i{
+    font-size: 4.5rem;
+  }
+  .rps-player-panel .avatar{
+    width: 50px;
+  }
+  .rps-player-panel .username{font-size: 0.8rem;}
+  .rps-player-panel .status-indicator{font-size: 1rem;}
+  .rps-container .rps-battle-area .rps-player-panel{
+    gap: 8px; 
+    max-width: 40%; 
+    min-width: 40%; 
+    order: 2;
+    padding: 12px;
+  }
+  .rps-center-info{
+    gap: 5px;
+    margin-top: 15px;
+  }
+  .rps-center-info{order: 1;}
+  .rps-scoreboard span.score.me,
+  .rps-scoreboard .score-divider,
+  .rps-scoreboard span.score.opp{
+    font-size: 2rem;
+  }
+  .rps-scoreboard{padding: 10px 20px;}
+  .rps-battle-area{
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .rps-container{padding: 15px 0px; width: 95%;}
+  .rps-selection-panel{width: 80%;}
+}

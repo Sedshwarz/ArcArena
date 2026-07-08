@@ -1,0 +1,405 @@
+.glass-panel {
+  background: rgba(47, 52, 62, 0.4);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 15px;
+  padding: 40px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  max-width: 450px;
+  margin: 0 auto;
+}
+
+.neon-text {
+  color: #eef2f5;
+  margin-bottom: 10px;
+  font-size: 2rem;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+.sub-text {
+  color: #aaa;
+  margin-bottom: 30px;
+  font-size: 1rem;
+}
+
+.input-group {
+  margin-bottom: 25px;
+}
+
+.neon-input {
+  width: 100%;
+  padding: 12px 15px;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid #444;
+  border-radius: 8px;
+  color: #eef2f5;
+  font-size: 1.1rem;
+  outline: none;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+  font-family: 'Roboto Mono', monospace;
+}
+
+.neon-input:focus {
+  border-color: #69ffb3;
+  box-shadow: 0 0 10px rgba(105, 255, 179, 0.3);
+}
+
+.neon-button {
+  width: 100%;
+  padding: 15px;
+  font-size: 0.85rem;
+  font-family: 'Press Start 2P', cursive;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-radius: 8px;
+  border: none;
+  background: linear-gradient(135deg, #69ffb3, #00d2ff);
+  color: #000;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(105, 255, 179, 0.2);
+}
+
+.neon-button:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 6px 20px rgba(105, 255, 179, 0.4);
+}
+
+.neon-button:disabled {
+  background: #2a2e36 !important;
+  color: #666 !important;
+  box-shadow: none !important;
+  cursor: not-allowed !important;
+  transform: none !important;
+}
+
+.connect-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60vh;
+}
+
+/* HEADER & DROPDOWN STYLES */
+.header-right {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+}
+
+.header-right.hr-mobile .balance-box,
+.header-right.hr-mobile .dropdown-trigger,
+.header-right:not(.hr-mobile) .hrm-settings,
+.header-right:not(.hr-mobile) .dropdown-item.di-balance,
+.room-header .header-right .dropdown-item.di-balance{
+  display: none;
+}
+
+.hrm-settings {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  cursor: pointer;
+}
+
+.hrm-settings span {
+  width: 35px;
+  height: 4px;
+  background: #ffff00;
+  box-shadow: 2px 3px 0px #b30ab3
+}
+
+.header-right.hr-mobile .dropdown-menu {
+  background: #c410c47c;
+  accent-color: #ffff00;
+}
+.header-right.hr-mobile .dropdown-menu .msc-volume,
+.header-right.hr-mobile .dropdown-menu .msc-slider{
+  accent-color: #ffff00;
+  color: #ffff00;
+}
+
+
+.msc-volume {
+  color: #49e99e;
+  font-size: 0.8rem;
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+.msc-slider {
+  width: 100%;
+  accent-color: #49e99e;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+
+
+.balance-box, .dropdown-trigger {
+  width: 200px;
+  height: 60.3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url('../../assets/component.png');
+  background-size: cover;
+  background-position: center;
+  gap: 10px;
+  position: relative;
+}
+
+.balance-icon {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+.balance-text {
+  color: #69ffb3;
+  font-weight: bold;
+  font-size: 1.2rem;
+  font-family: 'Roboto Mono', monospace;
+  letter-spacing: -0.5px;
+}
+
+.balance-tooltip {
+  position: absolute;
+  top: calc(100% + 15px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(64, 39, 131, 0.165);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 8px 12px;
+  color: #aaa;
+  font-size: 0.85rem;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  display: flex;
+  gap: 8px;
+}
+
+.balance-box:hover .balance-tooltip {
+  opacity: 1;
+  visibility: visible;
+  top: calc(100% + 8px);
+}
+
+.balance-tooltip span:last-child {
+  color: #eef2f5;
+  font-family: monospace;
+}
+
+.user-dropdown {
+  position: relative;
+}
+
+.dropdown-trigger {
+  transition: 0.15s ease;
+  cursor: pointer;
+}
+
+.dropdown-trigger:hover {
+  filter: hue-rotate(-20deg);
+}
+
+.user-avatar {
+  width: 35px;
+}
+
+.user-details {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 1.2;
+}
+
+.user-name {
+  color: #eef2f5;
+  font-weight: bold;
+  font-size: 0.95rem;
+  font-family: 'Roboto Mono', monospace;
+}
+
+.user-address {
+  color: #888;
+  font-size: 0.75rem;
+  font-family: 'Roboto Mono', monospace;
+  font-family: monospace;
+}
+
+.dropdown-arrow {
+  color: #6639aa;
+  font-size: 0.7rem;
+  transition: transform 0.3s ease;
+}
+
+.dropdown-arrow.open {
+  transform: rotate(180deg);
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  background: rgba(64, 39, 131, 0.165);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  width: 220px;
+  padding: 10px 0;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  animation: fadeInDown 0.2s ease forwards;
+}
+
+.dropdown-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  color: #ccc;
+  font-size: 0.9rem;
+  transition: background 0.2s;
+  cursor: pointer;
+  font-family: 'Press Start 2P', cursive;
+
+}
+
+.di-profile {
+  font-size: 0.75rem;
+  font-weight: bold;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  gap: 10px;
+  justify-content: flex-start;
+  letter-spacing: 0.1px;
+}
+.hr-mobile .di-profile {
+  color: #d7eca1;
+}
+
+.dropdown-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+}
+
+.dropdown-divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.05);
+  margin: 5px 0;
+}
+.dropdown-menu .msc-volume {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.6rem;
+  padding-left: 6px;
+}
+
+.dropdown-item.di-balance{
+  gap: 6px;
+  justify-content: flex-start;
+  padding: 10px 20px 10px 17px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+.dropdown-item.di-balance img{ width: 23px; height: 23px;}
+.dropdown-item.di-balance .balance-text{ 
+  font-size: 0.8rem;
+  font-family: 'Press Start 2P', cursive;
+}
+
+
+.disconnect-btn {
+  width: 100%;
+  background: none;
+  border: none;
+  color: #ff6b6b;
+  cursor: pointer;
+  font-weight: bold;
+  text-align: left;
+  justify-content: flex-start;
+  gap: 10px;
+  font-size: 0.75rem;
+}
+
+.disconnect-btn:hover {
+  background: rgba(255, 107, 107, 0.1);
+  color: #ff8e8e;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+.connect-btn-container {
+  position: relative;
+  width: 100%; 
+  max-width: 650px;
+  aspect-ratio: 650 / 503.8;
+  background: url('../../assets/welcome.png');
+  background-size: cover;
+  background-position: center;
+  z-index: 1;
+}
+
+.connect-btn {
+  position: absolute;
+  left: 50%; 
+  transform: translateX(-50%); 
+  bottom: 15%;
+  width: 64%;
+  aspect-ratio: 418.5 / 90.4;
+  background: url('../../assets/connect-btn.png');
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.connect-btn:hover {
+  filter: brightness(1.4) drop-shadow(0 0 24px rgba(106, 188, 255, 0.74));
+}
+.connect-btn:active {
+  bottom: calc(15% - 3px);
+}
+
+@media (max-width: 495px) {
+  .connect-btn-container {
+    aspect-ratio: 509 / 577;
+    background: url('../../assets/welcome2.png');
+    background-size: cover;
+  background-position: center;
+  }
+  .connect-btn {
+    aspect-ratio: 425 / 92;
+    width: 80%;
+    bottom: 17%;
+    background: url('../../assets/connect-btn2.png');
+    background-size: cover;
+    background-position: center;
+  }
+  .connect-btn:active {
+    bottom: calc(17% - 3px);
+  }
+  .header-right{
+    padding-top: 20px;
+  }
+}

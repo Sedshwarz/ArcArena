@@ -1,0 +1,252 @@
+.game-wrap{
+  width: 100%;
+}
+
+body .hangman-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+  margin-top: 20px;
+}
+
+.hangman-side {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 15px;
+  padding: 30px 20px 20px 20px;
+  gap: 15px;
+}
+
+.hangman-side.active-turn {
+  border-color: #69ffb3;
+  box-shadow: 0 0 15px rgba(105, 255, 179, 0.2);
+}
+
+.player-label {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #ccc;
+}
+.hangman-side-top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
+  margin-bottom: 10px;
+}
+.player-id{
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.8rem;
+  line-height: 1.3;
+  color: #dbdb22;
+}
+.error-count{
+  font-family: "VT323", monospace;
+  font-size: 1.5rem;
+}
+
+.player-score {
+  font-size: 1rem;
+  color: #69ffb3;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.gallows-svg {
+  filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.2));
+  margin-top: 5px;
+}
+
+.hangman-center {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.category-text {
+  color: #ebca76;
+  font-size: 1.8rem;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  font-family: "VT323", monospace;
+}
+
+.word-display {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.word-group {
+  display: flex;
+  flex-wrap: nowrap; 
+  gap: clamp(3px, 1vw, 8px); 
+  justify-content: center;
+}
+
+.letter-box {
+  flex: 0 1 40px; 
+  min-width: 22px;
+  height: clamp(35px, 6vw, 50px);
+  border-bottom: 3px solid #eef2f5;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  font-size: clamp(1.2rem, 4vw, 2rem);
+  font-weight: bold;
+  color: #69ffb3;
+  text-shadow: 0 0 10px rgba(105, 255, 179, 0.5);
+  text-transform: uppercase;
+}
+
+.keyboard {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+}
+
+.keyboard-row {
+  display: flex;
+  gap: clamp(4px, 1vw, 8px);
+  justify-content: center;
+  width: 100%;
+}
+
+.key-btn {
+  width: clamp(28px, 4vw, 35px);
+  height: clamp(38px, 5vw, 45px);
+  background: #2f343e;
+  border: 1px solid #444;
+  border-radius: 6px;
+  color: #eef2f5;
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.key-btn:hover:not(:disabled) {
+  background: #69ffb3;
+  color: #000;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(105, 255, 179, 0.4);
+}
+
+.key-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.guess-word-btn {
+  margin-top: 15px;
+  padding: 12px 30px;
+  background: linear-gradient(135deg, #ff6b6b, #c0392b);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-family: 'Press Start 2P', cursive;
+}
+
+.guess-word-btn:hover:not(:disabled) {
+  box-shadow: 0 0 15px rgba(255, 107, 107, 0.5);
+  transform: translateY(-2px);
+}
+
+.guess-input-container {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+  align-items: center;
+}
+
+.guess-input {
+  padding: 10px 15px;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid #69ffb3;
+  border-radius: 8px;
+  color: #eef2f5;
+  font-size: 1.1rem;
+  font-weight: bold;
+  outline: none;
+  width: 150px;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.guess-submit-btn, .guess-cancel-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 8px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: all 0.2s;
+}
+
+.guess-submit-btn { background: #69ffb3; color: #000; }
+.guess-submit-btn:hover { box-shadow: 0 0 10px rgba(105, 255, 179, 0.5); }
+
+.guess-cancel-btn { background: #ff6b6b; color: white; }
+.guess-cancel-btn:hover { box-shadow: 0 0 10px rgba(255, 107, 107, 0.5); }
+
+.timer-badge {
+  font-size: 2rem;
+  font-weight: bold;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: 1px solid #444;
+  color: #fff;
+}
+
+.timer-badge.urgent {
+  color: #ff6b6b;
+  border-color: #ff6b6b;
+  animation: pulseGlow 1s infinite;
+}
+
+/* RESPONSIVE TASARIM (MOBİL) */
+@media (max-width: 768px) {
+  body .hangman-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 60px;
+    max-width: 90%;
+  }
+
+  .hangman-side, .hangman-center {
+    width: 95%;
+    max-width: 500px;
+  }
+}
+
+/* DARAĞACI ANİMASYONU */
+.show-part {
+  opacity: 1;
+  transition: opacity 0.15s ease-in;
+}
+.hide-part {
+  opacity: 0;
+  transition: opacity 0.15s ease-in;
+}

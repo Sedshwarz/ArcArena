@@ -1,0 +1,263 @@
+.leaderboard-container {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  color: #fff;
+  animation: fadeIn 0.5s ease forwards;
+}
+
+.leaderboard-container.fade-out {
+  animation: fadeOut 0.5s ease forwards;
+}
+
+.leaderboard-title {
+  font-size: 2.5rem;
+  color: #ebca76;
+  margin: 0 0 30px 0;
+  text-align: center;
+  animation: leaderboardGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes leaderboardGlow {
+  from {
+    text-shadow: 0 0 10px rgba(235, 202, 118, 0.5), 0 0 20px rgba(235, 202, 118, 0.3);
+  }
+
+  to {
+    text-shadow: 0 0 20px rgba(235, 202, 118, 0.8), 0 0 30px rgba(235, 202, 118, 0.6), 0 0 40px rgba(235, 202, 118, 0.4);
+  }
+}
+
+.podium-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 15px;
+  margin-bottom: 50px;
+  margin-top: 30px;
+}
+
+.podium-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 130px;
+  min-width: 130px;
+  position: relative;
+}
+
+.podium-username {
+  font-size: 1.05rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+}
+
+.podium-1 .podium-username {
+  margin-bottom: 40px;
+}
+.podium-box span,
+.podium-points {
+  font-family: 'Press Start 2P', cursive;
+}
+
+.podium-avatar-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.podium-avatar {
+  width: 80px;
+}
+
+.crown-icon {
+  position: absolute;
+  top: -40px;
+  font-size: 2.5rem;
+  z-index: 2;
+  filter: drop-shadow(0 0 10px #FFD700);
+}
+
+.medal-icon {
+  position: absolute;
+  bottom: -25px;
+  font-size: 1.8rem;
+  z-index: 2;
+  filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
+}
+
+.podium-box {
+  width: 100%;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 27px;
+  font-size: 2.6rem;
+  font-weight: bold;
+  box-shadow: inset 0 10px 20px rgba(0, 0, 0, 0.5);
+}
+
+.podium-points {
+  margin-top: 20px;
+  font-weight: bold;
+  font-size: 0.8rem;
+  max-width: 100%;
+  text-align: center;
+}
+
+.podium-1 .podium-username {
+  color: #FFD700;
+  text-shadow: 0 0 10px #FFD700;
+  font-size: 1.2rem;
+}
+
+.podium-1 .podium-avatar {
+  width: 110px;
+  filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.8));
+}
+
+.podium-1 .podium-box {
+  height: 180px;
+  background: linear-gradient(to top, rgba(255, 215, 0, 0.1), rgba(255, 215, 0, 0.3));
+  border: 2px solid #FFD700;
+  border-bottom: none;
+  color: #FFD700;
+  text-shadow: 0 0 15px #FFD700;
+}
+
+.podium-1 .podium-points {
+  color: #FFD700;
+}
+
+.podium-2 .podium-username {
+  color: #E0E0E0;
+  text-shadow: 0 0 10px #E0E0E0;
+}
+
+.podium-2 .podium-avatar {
+  filter: drop-shadow(0 0 10px rgba(224, 224, 224, 0.5));
+}
+
+.podium-2 .podium-box {
+  height: 130px;
+  background: linear-gradient(to top, rgba(224, 224, 224, 0.1), rgba(224, 224, 224, 0.2));
+  border: 2px solid #E0E0E0;
+  border-bottom: none;
+  color: #E0E0E0;
+  text-shadow: 0 0 10px #E0E0E0;
+}
+
+.podium-2 .podium-points {
+  color: #E0E0E0;
+}
+
+.podium-3 .podium-username {
+  color: #CD7F32;
+  text-shadow: 0 0 10px #CD7F32;
+}
+
+.podium-3 .podium-avatar {
+  filter: drop-shadow(0 0 10px rgba(205, 127, 50, 0.5));
+}
+
+.podium-3 .podium-box {
+  height: 90px;
+  background: linear-gradient(to top, rgba(205, 127, 50, 0.1), rgba(205, 127, 50, 0.2));
+  border: 2px solid #CD7F32;
+  border-bottom: none;
+  color: #CD7F32;
+  text-shadow: 0 0 10px #CD7F32;
+}
+
+.podium-3 .podium-points {
+  color: #CD7F32;
+}
+
+.leaderboard-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(30, 26, 0, 0.267);
+  border: 1px solid rgba(226, 223, 50, 0.3);
+  padding: 15px 25px 15px 8px;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  font-family: 'VT323', monospace;
+
+}
+
+.list-item:hover {
+  background: rgba(30, 26, 0, 0.2);
+  border-color: #b1a328;
+  transform: scale(1.02);
+  box-shadow: 0 0 15px rgba(164, 226, 50, 0.2);
+}
+
+.list-rank {
+  font-size: 1.7rem;
+  font-weight: bold;
+  color: #555;
+  width: 50px;
+  transition: color 0.3s ease;
+}
+
+.list-item:hover .list-rank {
+  color: #b1a328;
+}
+
+.list-username {
+  flex-grow: 1;
+  font-size: 1.6rem;
+  color: #fff;
+  font-weight: 500;
+}
+
+.list-points {
+  font-size: 0.9rem;
+  letter-spacing: -1px;
+  color: #fecf00;
+  font-family: 'Press Start 2P', cursive;
+
+}
+
+
+@media (max-width: 700px) {
+  .leaderboard-container {
+    width: 95%;
+  }
+}
+@media (max-width: 520px) {
+  .leaderboard-title {
+    font-size: 1.7rem;
+  }
+  .podium-wrapper{
+    margin-top: 40px;
+  }
+  .podium-step {
+    max-width: 32%;
+    min-width: 32%;
+  }
+}
+@media (max-width: 410px) {
+  .leaderboard-container {
+    padding: 5px;
+  }
+}

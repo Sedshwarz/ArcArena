@@ -1,0 +1,186 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=Roboto+Mono:wght@400;700&display=swap');
+
+body, html {
+  margin: 0;
+  padding: 0;
+  background-color: #000000;
+  background-image: radial-gradient(circle, #1a001a 1px, transparent 1px);
+  background-size: 15px 15px;
+  color: #f0f0f0;
+  font-family: 'Roboto Mono', monospace;
+  min-height: 100vh;
+}
+html {
+  scrollbar-gutter: stable;
+}
+*{
+  user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  -moz-user-select: none;
+  -webkit-user-drag: none;
+}
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #3f4096;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #170742;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: #291563;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Press Start 2P', cursive;
+}
+
+.App {
+  text-align: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: url('./assets/background.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  position: relative;
+}
+.App::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  background-image: radial-gradient(circle, #110020 1px, transparent 1px);
+  background-size: 15px 15px;
+  z-index: 0;
+  pointer-events: none;
+}
+.App-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.App-header {
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  z-index: 3;
+}
+.App .App-header.disconnected-header{
+  display: none;
+}
+
+.App-header h1 {
+  color: #ffff00;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 2.5rem;
+  text-shadow: 3px 3px 0px #ff00ff;
+}
+.logo{
+  width: 300px;
+}
+
+.back-nav-button { 
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.back-nav-button .back-button{
+  width: 200px;
+  height: 61px;
+  background: url('./assets/back.png');
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 50px;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 1.1rem;
+  padding: 3px 0 0 3px;
+}
+
+.back-nav-button .back-button:hover {
+  transform: translateX(-3px);
+  filter: brightness(1.4);
+}
+
+.leaderboard-container .back-nav-button .back-button{
+  filter: hue-rotate(160deg) brightness(1.7);
+}
+.lobby-page-container .back-nav-button .back-button,
+.profile-container .back-nav-button .back-button{
+  filter: hue-rotate(278deg) brightness(1.7);
+}
+.faq-page-container .back-nav-button .back-button{
+  filter: hue-rotate(270deg) brightness(1.7);
+}
+
+.arcade-button {
+  font-family: 'Press Start 2P', cursive;
+  margin-top: 20px;
+  padding: 15px 30px;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 0;
+  border: 2px solid #f0f0f0;
+  background-color: #ff00ff;
+  color: #000;
+  font-weight: bold;
+}
+
+
+@media (max-width: 1050px) {
+  .App-header {
+    align-items: center;
+  }
+}
+
+
+@media (max-width: 824px) and (min-width: 500px) {
+  .App-header:not(.room-header){
+    flex-direction: column;
+    padding: 35px 20px;
+    gap: 20px;
+  }
+}
+@media (max-width: 500px) {
+  .App-header {
+    flex-direction: row;
+    padding: 30px 10px;
+  }
+  .App-header h1{
+    font-size: 2rem;
+  }
+  .App-main{
+    padding: 0 10px;
+  }
+}
+@media (max-width: 440px) {
+  .logo{
+    width: 250px;
+    margin-left: 10px;
+  }
+}
+@media (min-width: 440px) {
+  .logo{
+    margin-top: -10px;
+  }
+}

@@ -1,0 +1,8 @@
+# ARCARENA - Web3 Arcade Platform
+
+User-agent: *
+Allow: /
+
+Disallow: /room/
+Disallow: /profile/
+Disallow: /*?join=*

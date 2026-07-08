@@ -1,0 +1,7 @@
+[profile.default]
+src = "src"
+out = "out"
+libs = ["lib"]
+
+[rpc_endpoints]
+arc_testnet = "${ARC_TESTNET_RPC_URL}"

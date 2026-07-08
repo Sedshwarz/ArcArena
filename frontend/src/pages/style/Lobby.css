@@ -1,0 +1,294 @@
+.lobby-page-container {
+  width: 90%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  color: #fff;
+  animation: fadeIn 0.5s ease forwards;
+}
+
+.lobby-page-container.fade-out {
+  animation: fadeOut 0.5s ease forwards;
+}
+
+.lobby-title {
+  text-align: center;
+  color: #00f2fe;
+  text-shadow: 0 0 10px rgba(0, 242, 254, 0.4);
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 2.2rem;
+}
+
+.lobby-filter-bar {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.filter-btn {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid #444;
+  color: #aaa;
+  padding: 8px 20px;
+  border-radius: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.filter-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.filter-btn.active {
+  background: #00f2fe;
+  color: #000;
+  border-color: #00f2fe;
+  box-shadow: 0 0 15px rgba(0, 242, 254, 0.4);
+}
+
+.bet-filters {
+  margin-top: -15px;
+}
+
+.lobby-additional-filters {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.lobby-search-input {
+  width: 100%;
+  max-width: 400px;
+  padding: 12px 20px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid #444;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 1rem;
+  text-align: center;
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.lobby-search-input:focus {
+  border-color: #00f2fe;
+  box-shadow: 0 0 10px rgba(0, 242, 254, 0.3);
+}
+
+.room-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.room-list-item {
+  display: grid;
+  grid-template-columns: auto auto 1fr;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  background: rgba(0, 10, 20, 0.7);
+  border: 1px solid rgba(0, 242, 254, 0.2);
+  padding: 15px 25px;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.room-list-item:hover {
+  background: rgba(0, 242, 254, 0.05);
+  border-color: #19a3aa;
+  box-shadow: 0 0 15px rgba(0, 242, 254, 0.1);
+}
+
+.room-creator-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.lobby-creator-avatar {
+  width: 45px;
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.2));
+}
+
+.lobby-creator-details {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+.lobby-room-id {
+  font-size: 0.8rem;
+  color: #888;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 3px 7px;
+  border-radius: 4px;
+  font-family: monospace;
+  letter-spacing: 1px;
+}
+
+.lobby-creator-name {
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #52d6ee;
+  max-width: 200px;
+  display: inline-block;
+  overflow-wrap: break-word;
+  white-space: normal;
+  text-align: left;
+}
+
+.room-game-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.join-button-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.lobby-game-name {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #fff;
+  text-align: left;
+}
+
+.lobby-bet-amount {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #ebca76;
+  background: rgba(235, 202, 118, 0.1);
+  padding: 3px 8px;
+  border-radius: 6px;
+  margin-top: 5px;
+}
+
+.join-room-btn {
+  padding: 10px 25px;
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-radius: 8px;
+  border: none;
+  background: linear-gradient(135deg, #32e2b2, #00f2fe);
+  color: #000;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(50, 226, 178, 0.2);
+}
+
+.join-room-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(50, 226, 178, 0.4);
+}
+
+.join-room-btn:disabled {
+  background: #2a2e36;
+  color: #666;
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+.no-rooms-message {
+  text-align: center;
+  padding: 50px;
+  color: #888;
+  font-size: 1.2rem;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
+  border: 1px dashed #444;
+}
+
+.no-rooms-message p {
+  margin: 5px 0;
+}
+
+
+
+
+@media (max-width: 605px) {
+  .lobby-creator-name {
+    font-size: 0.9rem;
+    max-width: 150px;
+  }
+
+  .lobby-game-name {
+    font-size: 1rem;
+  }
+
+  .lobby-room-id,
+  .lobby-bet-amount {
+    font-size: 0.9rem;
+    padding: 3px 8px;
+  }
+}
+
+@media (max-width: 570px) {
+  .room-list-item {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 15px;
+  }
+
+  .room-creator-info {
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .lobby-creator-name {
+    max-width: 100%;
+  }
+
+  .room-game-info,
+  .lobby-creator-details {
+    align-items: center;
+    text-align: center;
+  }
+
+  .join-button-container {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 450px) {
+  .lobby-page-container {
+    padding: 0px 12px;
+  }
+
+  .room-list-item {
+    gap: 15px;
+  }
+
+  .lobby-creator-name {
+    font-size: 1rem;
+  }
+
+  .lobby-filter-bar {
+    gap: 5px;
+    margin-bottom: 20px;
+  }
+
+  .filter-btn {
+    color: #aaa;
+    padding: 8px 13px;
+    border-radius: 14px;
+    font-size: 0.8rem;
+  }
+}
+@media (min-height: 800px) and (max-height: 1000px) and (max-width: 450px) {
+  .lobby-page-container {
+    position: relative;
+    top: -7vh;
+  }
+}

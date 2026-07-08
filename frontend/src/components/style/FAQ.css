@@ -1,0 +1,100 @@
+.faq-page-container {
+  width: 90%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  color: #fff;
+  animation: fadeIn 0.5s ease forwards;
+}
+
+.faq-page-container.fade-out {
+  animation: fadeOut 0.5s ease forwards;
+}
+
+.faq-title {
+  text-align: center;
+  color: #32e2b2;
+  text-shadow: 0 0 10px rgba(50, 226, 178, 0.4);
+  margin-top: 0;
+  margin-bottom: 30px;
+  font-size: 1.8rem;
+}
+
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.faq-item {
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(50, 226, 178, 0.3);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+
+.faq-item.open {
+  border-color: #32e2b2;
+  box-shadow: 0 0 15px rgba(50, 226, 178, 0.15);
+}
+
+.faq-question {
+  padding: 18px 20px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: normal;
+  font-size: 0.75rem;
+  user-select: none;
+  transition: background 0.3s ease;
+  font-family: 'Press Start 2P', cursive;
+  line-height: 1.5;
+}
+
+.faq-question:hover {
+  background: rgba(50, 226, 178, 0.1);
+}
+
+.faq-icon {
+  font-size: 1.5rem;
+  color: #00f2fe;
+  transition: transform 0.3s ease;
+}
+
+.faq-item.open .faq-icon {
+  color: #ff6b6b;
+  transform: rotate(180deg);
+}
+
+.faq-answer {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, opacity 0.2s ease;
+}
+
+.faq-item.open .faq-answer {
+  max-height: 250px;
+  opacity: 1;
+  transition: max-height 0.4s ease, opacity 0.4s ease 0.1s;
+}
+
+.faq-answer-inner {
+  padding: 0 20px 20px 20px;
+  color: #ccc;
+  line-height: 1.6;
+  font-size: 1.05rem;
+  font-family: 'Roboto Mono', monospace;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; transform: translateY(0); }
+  to { opacity: 0; transform: translateY(10px); }
+}

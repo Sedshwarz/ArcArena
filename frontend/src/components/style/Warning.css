@@ -1,0 +1,39 @@
+.warning-container {
+  position: fixed;
+  bottom: 30px;
+  left: 30px;
+  background-color: #2f343e;
+  border-left: 4px solid #ff6b6b;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+}
+
+.warning-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.95rem;
+}
+
+.warning-container.fade-in {
+  animation: slideInFade 0.5s ease-out forwards;
+}
+
+.warning-container.fade-out {
+  animation: slideOutFade 0.5s ease-in forwards;
+}
+
+@keyframes slideInFade {
+  from { opacity: 0; transform: translateX(-30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideOutFade {
+  from { opacity: 1; transform: translateX(0); }
+  to { opacity: 0; transform: translateX(-30px); }
+}

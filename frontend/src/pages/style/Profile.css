@@ -1,0 +1,272 @@
+.profile-container {
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 20px;
+  color: #fff;
+  animation: fadeIn 0.5s ease forwards;
+}
+
+.profile-container.fade-out {
+  animation: fadeOut 0.5s ease forwards;
+}
+
+.profile-title {
+  font-size: 1.5rem;
+  color: #00f2fe;
+  margin: 0 0 30px 0;
+  text-align: center;
+  text-shadow: 0 0 15px rgba(0, 242, 254, 0.5);
+}
+
+.profile-card {
+  background: rgba(0, 15, 25, 0.7);
+  border: 1px solid rgba(0, 242, 254, 0.3);
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 0 30px rgba(0, 242, 254, 0.1);
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin-bottom: 20px;
+}
+.profile-header img{ width: 100px; }
+
+.profile-avatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.profile-avatar:hover {
+  filter: drop-shadow(0 0 15px rgba(0, 242, 254, 0.5));
+}
+.fa-exchange-alt{
+  color: #5bd4e4;
+  font-size: 0.8rem;
+  padding: 3px;
+}
+
+.avatar-edit-badge {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: rgba(26, 26, 46, 0.8);
+  border-radius: 50%;
+  padding: 5px;
+  border: 2px solid #555;
+}
+
+.profile-info-edit {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.profile-info-edit label {
+  font-size: 0.8rem;
+  color: #888;
+  font-weight: bold;
+  text-align: left;
+  font-family: 'Roboto Mono', monospace;
+}
+
+.profile-info-edit input {
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid #444;
+  color: #fff;
+  padding: 10px 15px;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  outline: none;
+  font-family: 'Roboto Mono', monospace;
+  transition: border-color 0.3s ease;
+  width: calc(100%-30px);
+}
+
+.profile-info-edit input:focus {
+  border-color: #00f2fe;
+  box-shadow: 0 0 10px rgba(0, 242, 254, 0.3);
+}
+
+.wallet-badge {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-family: monospace;
+  color: #aaa;
+  width: fit-content;
+}
+
+.wallet-info-wallet-address {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.save-profile-btn {
+  width: 100%;
+  margin: 0;
+  padding: 12px;
+  font-size: 1.1rem;
+}
+
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  margin-bottom: 40px;
+}
+
+.stat-box {
+  background: rgba(0, 10, 15, 0.6);
+  border: 1px solid #333;
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.stat-box:hover {
+  border-color: #555;
+  transform: translateY(-3px);
+}
+
+.stat-value {
+  font-size: 1.2rem;
+  font-weight: normal;
+  margin-bottom: 10px;
+  text-shadow: 0 0 10px currentColor;
+  font-family: 'Press Start 2P', cursive;
+}
+
+.stat-label {
+  font-size: 0.85rem;
+  color: #888;
+  font-weight: bold;
+  letter-spacing: 1px;
+  font-family: 'Roboto Mono', monospace;
+}
+
+/* --- HISTORY LIST --- */
+.history-title {
+  font-size: 1.2rem;
+  color: #fff;
+  border-bottom: 1px solid #333;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+  font-family: 'Press Start 2P', cursive;
+}
+
+.history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.history-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  border-radius: 8px;
+  font-weight: bold;
+  background: rgba(0, 0, 0, 0.4);
+  border-left: 5px solid transparent;
+  font-family: 'Roboto Mono', monospace;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.history-item.win {
+  border-left-color: #32e2b2;
+}
+
+.history-item.loss {
+  border-left-color: #ff6b6b;
+}
+
+.history-game {
+  color: #ccc;
+  font-size: 1.05rem;
+  text-align: left;
+  flex: 1;
+  min-width: 200px;
+}
+
+.history-amount {
+  font-size: 1.1rem;
+  white-space: nowrap;
+}
+
+.win .history-amount {
+  color: #32e2b2;
+}
+
+.loss .history-amount {
+  color: #ff6b6b;
+}
+
+
+
+
+@media (max-width: 700px) {
+  .profile-container {
+    width: 90%;
+    max-width: auto;
+  }
+  .profile-info-edit input {
+    width: calc(100% - 30px);
+  }
+  .stat-value{
+    line-height: 1.6rem;
+  }
+}
+@media (max-width: 470px) {
+  .stat-label{
+    font-size: 0.8rem;
+  }
+  .stat-value{
+    font-size: 1.1rem;
+  }
+  .save-profile-btn {
+    font-size: 0.8rem;
+    padding: 10px;
+  }
+  .history-game {
+    font-size: 0.9rem;
+  }
+  .wallet-info-wallet-address {
+    font-size: 0.7rem;
+  }
+  .wallet-info-wallet-address label{
+    font-size: 0.75rem;
+  }
+  .profile-header img{ 
+    width: 80px; 
+  }
+  .profile-header{ 
+    gap: 15px;
+  }
+  .profile-card{ 
+    padding: 20px;
+  }
+
+}
