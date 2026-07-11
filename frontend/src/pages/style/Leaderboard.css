@@ -255,6 +255,23 @@
     max-width: 32%;
     min-width: 32%;
   }
+  .podium-1 .podium-box {
+    text-shadow: 0 0 8px #FFD700;
+  }
+  .podium-2 .podium-box {
+    text-shadow: 0 0 6px #E0E0E0;
+  }
+  .podium-3 .podium-box {
+    text-shadow: 0 0 6px #CD7F32;
+  }
+  @keyframes leaderboardGlow {
+    from {
+      text-shadow: 0 0 7px rgba(235, 202, 118, 0.5), 0 0 15px rgba(235, 202, 118, 0.3);
+    }
+    to {
+      text-shadow: 0 0 15px rgba(235, 202, 118, 0.8), 0 0 25px rgba(235, 202, 118, 0.6), 0 0 30px rgba(235, 202, 118, 0.4);
+    }
+  }
 }
 @media (max-width: 410px) {
   .leaderboard-container {

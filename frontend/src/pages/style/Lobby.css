@@ -263,7 +263,7 @@
 
 @media (max-width: 450px) {
   .lobby-page-container {
-    padding: 0px 12px;
+    padding: 20px 12px;
   }
 
   .room-list-item {

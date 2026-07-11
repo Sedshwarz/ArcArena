@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=Roboto+Mono:wght@400;700&display=swap');
 
-body, html {
+html, body {
   margin: 0;
   padding: 0;
   background-color: #000000;
@@ -9,6 +9,7 @@ body, html {
   color: #f0f0f0;
   font-family: 'Roboto Mono', monospace;
   min-height: 100vh;
+  overscroll-behavior: none;
 }
 html {
   scrollbar-gutter: stable;
