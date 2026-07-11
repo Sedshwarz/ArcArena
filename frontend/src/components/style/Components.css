@@ -391,7 +391,7 @@
    margin-bottom: 25px;
 }
 .avatar-selection img{ width: 80px; }
-.profile-container input{ 
+.profile-container .input-group input{ 
     background: linear-gradient(90deg, #46fabe, #1f6dff);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
