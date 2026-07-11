@@ -477,9 +477,24 @@ export function Room({ roomDetails: initialRoomDetails, onNavigate, showWarning,
         });
     };
 
+
     const handleLeaveRoom = async () => {
         const isLocalCreator = address?.toLowerCase() === room?.creatorAddress?.toLowerCase();
 
+        // 1. PENDING
+        if (room.status === 'pending') {
+            if (!isLocalCreator) {
+                onNavigate('home');
+                return;
+            }
+            setIsLeaving(true);
+            showWarning("Cleaning up stuck room...");
+            socket.emit('delete_room', room.gameId);
+            setTimeout(() => onNavigate('home'), 500);
+            return;
+        }
+
+        // 2. WAITING
         if (room.status === 'waiting') {
             if (!isLocalCreator) return;
 
@@ -499,18 +514,20 @@ export function Room({ roomDetails: initialRoomDetails, onNavigate, showWarning,
                         showWarning("You have left the waiting room and reclaimed your bet.");
                         onNavigate('home');
                     } else {
-                        showWarning(response.message || "Failed to leave the waiting room.");
-                        setIsLeaving(false);
+                        socket.emit('delete_room', room.gameId);
+                        onNavigate('home');
                     }
                 });
             } catch (error) {
                 console.error("Reclaim bet error:", error);
-                showWarning(error.shortMessage || "Failed to reclaim bet.");
-                setIsLeaving(false);
+                showWarning("Contract reclaim failed or rejected. Forcing exit...");
+                socket.emit('delete_room', room.gameId);
+                onNavigate('home');
             }
             return;
         }
 
+        // 3. PLAYING
         if (room.status === 'playing' && !isLeaving) {
             setIsLeaving(true);
             showWarning("Leaving will incur a penalty. Confirm in wallet.");
@@ -529,18 +546,21 @@ export function Room({ roomDetails: initialRoomDetails, onNavigate, showWarning,
                         showWarning("You have left the game with a penalty.");
                         onNavigate('home');
                     } else {
-                        showWarning("Server could not process the leave request. Please try again.");
-                        setIsLeaving(false);
+                        showWarning("Server could not process the leave request. Forcing exit...");
+                        socket.emit('leave_resolved_room', { gameId: room.gameId, playerAddress: address });
+                        onNavigate('home');
                     }
                 });
 
             } catch (error) {
                 console.error("Leave game error:", error);
-                showWarning(error.shortMessage || "Failed to leave the game.");
-                setIsLeaving(false);
+                showWarning("Contract interaction failed. Forcing exit...");
+                socket.emit('leave_resolved_room', { gameId: room.gameId, playerAddress: address });
+                onNavigate('home');
             }
         }
     };
+    
 
     const renderGameComponent = () => {
         if (abortedRematchId) {
