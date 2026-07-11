@@ -3,7 +3,7 @@ import { arcTestnet } from './viemConfig';
 
 export const config = getDefaultConfig({
   appName: 'ArcArena',
-  projectId: "436bee830dba7f77496c0c3d5bcd64ad",
+  projectId: process.env.REACT_APP_WC_PROJECT_ID,
   chains: [arcTestnet],
   ssr: false,
 });
