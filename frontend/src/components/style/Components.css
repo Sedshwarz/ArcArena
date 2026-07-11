@@ -381,6 +381,42 @@
   bottom: calc(15% - 3px);
 }
 
+
+.avatar-selection{
+   display: flex;
+   justify-content: center;
+   gap: 15px;
+   margin-bottom: 25px;
+}
+.avatar-selection img{ width: 80px; }
+.profile-container input{ 
+    background: linear-gradient(90deg, #46fabe, #1f6dff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+  }
+
+@media (max-width: 500px) {
+  .avatar-selection img{ width: 60px; }
+  .neon-text.pc-nt{
+    font-size: 1.5rem;
+    line-height: 32px;
+    word-spacing: -10px;
+  }
+  .pc-st{
+    font-size: 0.85rem;
+    word-spacing: -5px;
+  }
+  .profile-container input::placeholder{ font-size: 0.9rem; }
+  .profile-container.glass-panel{margin-top: -100px;}
+}
+@media (max-width: 385px) {
+  .avatar-selection img{ width: 50px; }
+}
+
+
+
 @media (max-width: 495px) {
   .connect-btn-container {
     aspect-ratio: 509 / 577;

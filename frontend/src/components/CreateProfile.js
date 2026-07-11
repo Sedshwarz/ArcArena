@@ -17,7 +17,7 @@ const AVATARS = {
 export function CreateProfile({ onProfileCreated, showWarning }) {
   const { address } = useAccount();
   const [username, setUsername] = useState('');
-  const [avatarId, setAvatarId] = useState(1);
+  const [avatarId, setAvatarId] = useState(3);
   const [isSaving, setIsSaving] = useState(false);
 
   const handleSave = async () => {
@@ -65,10 +65,10 @@ export function CreateProfile({ onProfileCreated, showWarning }) {
 
   return (
     <div className="profile-container glass-panel">
-      <h2 className="neon-text">Create Your Profile</h2>
-      <p className="sub-text">Welcome! Please choose an avatar and set a username.</p>
+      <h2 className="neon-text pc-nt">Create Your Profile</h2>
+      <p className="sub-text pc-st">Welcome! Please choose an avatar and set a username.</p>
       
-      <div className="avatar-selection" style={{ display: 'flex', justifyContent: 'center', gap: '15px', marginBottom: '25px' }}>
+      <div className="avatar-selection">
         {Object.entries(AVATARS).map(([id, src]) => (
           <div 
             key={id} 
@@ -79,9 +79,8 @@ export function CreateProfile({ onProfileCreated, showWarning }) {
               transform: avatarId === Number(id) ? 'scale(1.15)' : 'scale(1)',
               transition: 'all 0.3s ease',
             }}
-            title={`Select Avatar ${id}`}
           >
-            <img src={src} alt={`Avatar ${id}`} style={{ width: '80px' }} />
+            <img src={src} alt={`Avatar ${id}`}/>
           </div>
         ))}
       </div>
@@ -98,7 +97,7 @@ export function CreateProfile({ onProfileCreated, showWarning }) {
         />
       </div>
       <button className="neon-button" onClick={handleSave} disabled={isSaving}>
-        {isSaving ? 'CREATING...' : 'Save Profile'}
+        {isSaving ? 'CREATING...' : 'Create Profile'}
       </button>
     </div>
   );
