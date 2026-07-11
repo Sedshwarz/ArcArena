@@ -10,6 +10,7 @@ html, body {
   font-family: 'Roboto Mono', monospace;
   min-height: 100vh;
   overscroll-behavior: none;
+  overflow-x: hidden;
 }
 html {
   scrollbar-gutter: stable;
@@ -20,6 +21,8 @@ html {
   -ms-user-select: none;
   -moz-user-select: none;
   -webkit-user-drag: none;
+  -webkit-tap-highlight-color: transparent; 
+  outline: none;
 }
 ::-webkit-scrollbar {
   width: 8px;

@@ -867,6 +867,13 @@ body .player-console .ready-button-arcade.ready {
   .glitch-text {
     font-size: 1rem;
   }
+  .noise,
+  .noise-moving,
+  .scanlines,
+  .scanlines::before,
+  .noise-moving::before {
+    animation: none;
+  }
 }
 
 @media (max-width: 554px) {

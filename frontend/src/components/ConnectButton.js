@@ -20,7 +20,7 @@ export function ConnectButton() {
 
   return (
       <div className='connect-btn-container'>
-        <div className='connect-btn' onClick={handleConnect}></div>
+        <button className='connect-btn' onClick={handleConnect}></button>
       </div>
   );
 }

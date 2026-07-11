@@ -372,6 +372,8 @@
   background-position: center;
   cursor: pointer;
   transition: all 0.3s ease;
+  background-color: transparent;
+  border: none;
 }
 
 .connect-btn:hover {
@@ -422,7 +424,7 @@
     aspect-ratio: 509 / 577;
     background: url('../../assets/welcome2.png');
     background-size: cover;
-  background-position: center;
+    background-position: center;
   }
   .connect-btn {
     aspect-ratio: 425 / 92;
