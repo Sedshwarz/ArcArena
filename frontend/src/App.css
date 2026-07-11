@@ -3,13 +3,14 @@
 html, body {
   margin: 0;
   padding: 0;
-  background-color: #000000;
+  background-color: #000000 !important;
   background-image: radial-gradient(circle, #1a001a 1px, transparent 1px);
   background-size: 15px 15px;
   color: #f0f0f0;
   font-family: 'Roboto Mono', monospace;
   min-height: 100vh;
   overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
 }
 html {
   scrollbar-gutter: stable;
