@@ -197,9 +197,9 @@ export function CreateRoom({ onNavigate, showWarning }) {
         </div>
         <div className="control-panel">
           <div className="button-layout">
-            <button className="control-button arrow-button" onClick={handlePrevGame}>◀</button>
+            <button className="control-button arrow-button" onClick={handlePrevGame}><i className="fas fa-caret-left"></i></button>
             <button className="control-button select-button" onClick={handleGameSelect}>START</button>
-            <button className="control-button arrow-button" onClick={handleNextGame}>▶</button>
+            <button className="control-button arrow-button" onClick={handleNextGame}><i className="fas fa-caret-right"></i></button>
           </div>
         </div>
         <div className="cabinet-bottom"></div>

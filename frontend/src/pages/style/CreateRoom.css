@@ -250,6 +250,10 @@
   text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.3);
 }
 
+.arrow-button i{ font-size: 2.4rem;}
+.arrow-button .fa-caret-left{ padding-right: 6px;}
+.arrow-button .fa-caret-right{ padding-left: 6px;}
+
 .arrow-button:active {
   transform: translateY(3px);
   box-shadow: 0 2px 0 #8c6d00, inset 0 3px 3px rgba(255, 255, 255, 0.4), inset 0 -3px 3px rgba(0, 0, 0, 0.3);
