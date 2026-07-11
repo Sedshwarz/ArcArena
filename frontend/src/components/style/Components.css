@@ -374,6 +374,7 @@
   transition: all 0.3s ease;
   background-color: transparent;
   border: none;
+  -webkit-tap-highlight-color: transparent; 
 }
 
 .connect-btn:hover {
