@@ -360,7 +360,7 @@
   z-index: 1;
 }
 
-.connect-btn {
+.connect-btn{
   position: absolute;
   left: 50%; 
   transform: translateX(-50%); 
@@ -374,7 +374,9 @@
   transition: all 0.3s ease;
   background-color: transparent;
   border: none;
-  -webkit-tap-highlight-color: transparent; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .connect-btn:hover {
@@ -383,6 +385,21 @@
 .connect-btn:active {
   bottom: calc(15% - 3px);
 }
+
+.connect-btn div {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+.connect-btn div button{
+  width: 100% !important;
+  height: 100% !important;
+}
+
+
+
+
 
 
 .avatar-selection{

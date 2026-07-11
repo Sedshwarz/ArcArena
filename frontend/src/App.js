@@ -2,7 +2,7 @@ import './App.css';
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { useAccount, useSwitchChain } from 'wagmi';
 import { WalletInfo } from './components/WalletInfo';
-import { ConnectButton } from './components/ConnectButton';
+import { ConnectButtonComp } from './components/ConnectButton';
 import { CreateProfile } from './components/CreateProfile';
 import { Warning } from './components/Warning';
 import { Home } from './pages/Home';
@@ -99,7 +99,7 @@ function App() {
     if (isConnecting || isReconnecting) return null;
     if (isConnected && !isProfileChecked) return null;
     
-    if (!isConnected) return <ConnectButton />;
+    if (!isConnected) return <ConnectButtonComp />;
 
     const isCorrectNetwork = chains.some(c => c.id === chainId);
     if (!isCorrectNetwork && chains.length > 0) {

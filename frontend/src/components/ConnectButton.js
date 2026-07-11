@@ -1,26 +1,11 @@
-import { useConnect, useDisconnect } from 'wagmi';
+import { ConnectButton } from '@rainbow-me/rainbowkit';
 import './style/Components.css';
 
-export function ConnectButton() {
-  const { connect, connectors } = useConnect();
-  const { disconnect } = useDisconnect();
-
-  const handleConnect = () => {
-    disconnect();
-    setTimeout(() => {
-        const targetConnector = connectors.find(c => c.id === 'io.rabby') 
-                             || connectors.find(c => c.id === 'injected' || c.type === 'injected') 
-                             || connectors[0];
-
-        if (targetConnector) {
-            connect({ connector: targetConnector });
-        }
-    }, 50);
-  };
+export function ConnectButtonComp() {
 
   return (
       <div className='connect-btn-container'>
-        <button className='connect-btn' onClick={handleConnect}></button>
+        <div className='connect-btn'><ConnectButton /></div>
       </div>
   );
 }

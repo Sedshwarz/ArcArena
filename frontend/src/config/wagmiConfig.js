@@ -1,11 +1,9 @@
-import { http, createConfig } from 'wagmi';
-import { injected } from 'wagmi/connectors';
+import { getDefaultConfig } from '@rainbow-me/rainbowkit';
 import { arcTestnet } from './viemConfig';
 
-export const config = createConfig({
+export const config = getDefaultConfig({
+  appName: 'ArcArena',
+  projectId: process.env.REACT_APP_WC_PROJECT_ID,
   chains: [arcTestnet],
-  connectors: [injected()],
-  transports: {
-    [arcTestnet.id]: http(),
-  },
+  ssr: false,
 });

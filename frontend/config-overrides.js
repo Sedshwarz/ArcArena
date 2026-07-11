@@ -16,14 +16,23 @@ module.exports = function override(config) {
 
     config.resolve.alias = {
         ...(config.resolve.alias || {}),
-        'accounts': require.resolve('viem/accounts'),
+        'accounts': require.resolve('viem/accounts')
     };
+
+    config.module.rules.push({
+        test: /\.m?js/,
+        resolve: {
+            fullySpecified: false
+        }
+    });
 
     config.plugins = (config.plugins || []).concat([
         new webpack.ProvidePlugin({
-            process: 'process/browser',
+            process: 'process/browser.js',
             Buffer: ['buffer', 'Buffer']
         })
     ]);
+
+    config.ignoreWarnings = [/Failed to parse source map/];
     return config;
 }
