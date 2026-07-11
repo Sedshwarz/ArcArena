@@ -7,6 +7,9 @@ import { WagmiProvider } from 'wagmi';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { config } from './config/wagmiConfig';
 
+import { Buffer } from 'buffer';
+window.Buffer = window.Buffer || Buffer;
+
 const queryClient = new QueryClient();
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
