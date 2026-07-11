@@ -9,7 +9,6 @@ html, body {
   color: #f0f0f0;
   font-family: 'Roboto Mono', monospace;
   min-height: 100vh;
-  overscroll-behavior: none;
   overflow-x: hidden;
 }
 html {
