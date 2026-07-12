@@ -335,6 +335,34 @@
   cursor: not-allowed;
 }
 
+.cyber-title.my-turn{
+  color: #32e2b2;
+  text-shadow: 0 0 15px #32e2b2;
+  font-size: 2rem;
+  margin-top: 10px;
+}
+.cyber-title.enemy-turn{
+  color: #ff6b6b;
+  text-shadow: 0 0 15px #ff6b6b;
+  font-size: 2rem;
+  margin-top: 10px;
+}
+
+.timer-text{
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 10px 0;
+  width: 100px;
+}
+.ammo-status{
+  display: flex;
+  gap: 20px;
+  font-size: 1.1rem;
+  color: #00f2fe;
+  margin-top: 5px;
+}
+
+
 @media (max-width: 768px) {
 
   .deployment-container,
@@ -370,8 +398,17 @@
 
   .cyber-title {
     font-size: 2rem;
+    text-shadow: 0 0 10px rgba(0, 241, 254, 0.4), 0 0 20px rgba(79, 172, 254, 0.4);
   }
-
+  .cyber-title.ct-1 {
+    text-shadow: 0 0 15px rgba(235, 202, 118, 0.4);
+  }
+  .cyber-title.my-turn{
+    text-shadow: 0 0 15px rgba(50, 226, 179, 0.4);
+  }
+  .cyber-title.enemy-turn{
+    text-shadow: 0 0 15px rgba(255, 107, 107, 0.4);
+  }
   .dock-container {
     min-width: 100%;
   }

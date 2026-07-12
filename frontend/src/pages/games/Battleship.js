@@ -395,13 +395,13 @@ export function Battleship({ localRoom, isCreator, address, scores, onScoresUpda
                 {gameState.suddenDeath && (
                    <h3 className="sudden-death-text">☠️ SUDDEN DEATH ☠️</h3>
                 )}
-                <h2 className="cyber-title" style={{ color: isMyTurn ? '#32e2b2' : '#ff6b6b', textShadow: `0 0 15px ${isMyTurn ? '#32e2b2' : '#ff6b6b'}`, fontSize: '2rem', marginTop: '10px' }}>
+                <h2 className={"cyber-title" + isMyTurn ? " my-turn" : " enemy-turn"}>
                   {isMyTurn ? 'YOUR TURN' : 'ENEMY TURN'}
                 </h2>
-                <p className="timer-text" style={{ color: timer <= 5 ? '#ff6b6b' : '#ebca76', fontSize: '1.5rem', fontWeight: 'bold', margin: '10px 0', width: '100px' }}>
+                <p className="timer-text" style={{ color: timer <= 5 ? '#ff6b6b' : '#ebca76'}}>
                   ⏳ {timer}s
                 </p>
-                <div className="ammo-status" style={{ display: 'flex', gap: '20px', fontSize: '1.1rem', color: '#00f2fe', marginTop: '5px' }}>
+                <div className="ammo-status">
                   <span style={{ color: '#32e2b2' }}>AMMO: {Math.max(0, (gameState.maxAmmo || 10) - (myShots?.length || 0))}</span>
                   <span style={{ color: '#ff6b6b' }}>ENEMY: {Math.max(0, (gameState.maxAmmo || 10) - (oppShots?.length || 0))}</span>
                 </div>
@@ -433,7 +433,7 @@ export function Battleship({ localRoom, isCreator, address, scores, onScoresUpda
             <div className="radar-wrapper enemy-radar">
               <h3 className="board-title bt-enemy">
                 ENEMY RADAR
-                <img src={AVATARS[oppAvatar] || AVATARS[1]} alt="avatar" style={{ width: '35px', filter: 'drop-shadow(0 0 8px rgba(255,107,107,0.5))' }} />
+                <img src={AVATARS[oppAvatar] || AVATARS[1]} alt="avatar" style={{ width: '35px', filter: 'drop-shadow(0 0 8px rgba(255,107,107,0.45))' }} />
               </h3>
               <div className="radar-grid">
                 {Array(GRID_SIZE * GRID_SIZE).fill(null).map((_, idx) => {
