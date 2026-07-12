@@ -257,20 +257,20 @@
     min-width: 32%;
   }
   .podium-1 .podium-box {
-    text-shadow: 0 0 20px rgba(255, 217, 0, 0.65);
+    text-shadow: 0 0 15px rgba(255, 217, 0, 0.4);
   }
   .podium-2 .podium-box {
-    text-shadow: 0 0 14px rgba(224, 224, 224, 0.65);
+    text-shadow: 0 0 10px rgba(224, 224, 224, 0.4);
   }
   .podium-3 .podium-box {
-    text-shadow: 0 0 14px rgba(205, 128, 50, 0.65);
+    text-shadow: 0 0 10px rgba(205, 128, 50, 0.4);
   }
   @keyframes leaderboardGlow {
     from {
-      text-shadow: 0 0 10px rgba(235, 202, 118, 0.2), 0 0 20px rgba(235, 202, 118, 0.1);
+      text-shadow: 0 0 10px rgba(235, 202, 118, 0.1), 0 0 20px rgba(235, 202, 118, 0.05);
     }
     to {
-      text-shadow: 0 0 20px rgba(235, 202, 118, 0.5), 0 0 30px rgba(235, 202, 118, 0.3), 0 0 40px rgba(235, 202, 118, 0.1);
+      text-shadow: 0 0 20px rgba(235, 202, 118, 0.4), 0 0 30px rgba(235, 202, 118, 0.2), 0 0 40px rgba(235, 202, 118, 0.05);
     }
   }
 }

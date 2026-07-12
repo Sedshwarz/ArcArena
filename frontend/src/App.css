@@ -11,6 +11,8 @@ html, body {
   min-height: 100vh;
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 html {
   scrollbar-gutter: stable;
