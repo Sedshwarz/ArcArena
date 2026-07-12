@@ -866,6 +866,9 @@ body .player-console .ready-button-arcade.ready {
 
   .glitch-text {
     font-size: 1rem;
+    text-shadow:
+      1.5px 1.5px 0px #ff00ff,
+      -1.5px -1.5px 0px #00ffff;
   }
   .noise,
   .noise-moving,
