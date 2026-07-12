@@ -233,7 +233,7 @@ export function Hangman({ localRoom, isCreator, address, scores, onScoresUpdate,
           )}
         </div>
 
-        <div className={`hangman-side ${!isMyTurn ? 'active-turn' : ''}`}>
+        <div className={`hangman-side ${!isMyTurn ? 'active-turn at-enemy' : ''}`}>
           <div className="hangman-side-top">
             <img src={AVATARS[oppAvatar] || AVATARS[1]} alt="avatar" style={{ width: '50px', filter: 'drop-shadow(0 0 10px rgba(255,107,107,0.5))' }} />
             <span className="player-id" style={{ margin: 0 }}>@{oppUsername}</span>
