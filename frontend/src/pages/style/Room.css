@@ -729,6 +729,8 @@ body .player-console .ready-button-arcade.ready {
 .game-over-buttons {
   display: flex;
   gap: 20px;
+  justify-content: center;
+  align-items: center;
 }
 
 .game-over-btn {

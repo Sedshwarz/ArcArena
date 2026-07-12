@@ -395,7 +395,7 @@ export function Battleship({ localRoom, isCreator, address, scores, onScoresUpda
                 {gameState.suddenDeath && (
                    <h3 className="sudden-death-text">☠️ SUDDEN DEATH ☠️</h3>
                 )}
-                <h2 className={"cyber-title" + isMyTurn ? " my-turn" : " enemy-turn"}>
+                <h2 className={`cyber-title ${isMyTurn ? 'my-turn' : 'enemy-turn'}`}>
                   {isMyTurn ? 'YOUR TURN' : 'ENEMY TURN'}
                 </h2>
                 <p className="timer-text" style={{ color: timer <= 5 ? '#ff6b6b' : '#ebca76'}}>
