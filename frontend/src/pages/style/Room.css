@@ -821,6 +821,7 @@ body .player-console .ready-button-arcade.ready {
 
   .game-display-area {
     width: 100%;
+    flex: 100%;
     max-width: auto;
     min-height: auto;
     order: 4;
@@ -840,7 +841,10 @@ body .player-console .ready-button-arcade.ready {
   }
   .game-over-btn {
     font-size: 0.8rem;
-    padding: 10px 20px;
+    padding: 12px 20px;
+  }
+  .game-over-buttons{
+    gap: 8px;
   }
   .game-content-z{padding: 12px 0;}
 
@@ -856,6 +860,12 @@ body .player-console .ready-button-arcade.ready {
   .room-container-arcade {
     width: 95%;
     max-width: auto;
+  }
+  .game-over-buttons{
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
   }
 }
 
@@ -910,6 +920,11 @@ body .player-console .ready-button-arcade.ready {
 
   .player-console {
     max-width: 160px;
+  }
+  .game-over-buttons{
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: stretch;
   }
 }
 
