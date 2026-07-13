@@ -54,6 +54,7 @@ h1, h2, h3, h4, h5, h6 {
   background-position: center;
   background-attachment: fixed;
   position: relative;
+  overflow: hidden;
 }
 .App::after {
   content: '';
