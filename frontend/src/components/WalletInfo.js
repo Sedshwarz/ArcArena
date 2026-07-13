@@ -22,8 +22,16 @@ export function WalletInfo({ musicVolume, setMusicVolume, sfxVolume, setSfxVolum
   const [isOpen, setIsOpen] = useState(false);
   const [headerRightClass, setHeaderRightClass] = useState('');
   const dropdownRef = useRef(null);
-  const [mscToggle, setMscToggle] = useState(false);
-  const [sfxToggle, setSfxToggle] = useState(false);
+  const [mscToggle, setMscToggle] = useState(musicVolume > 0);
+  const [sfxToggle, setSfxToggle] = useState(sfxVolume > 0);
+
+  useEffect(() => {
+    setMscToggle(musicVolume > 0);
+  }, [musicVolume]);
+
+  useEffect(() => {
+    setSfxToggle(sfxVolume > 0);
+  }, [sfxVolume]);
 
   const isCorrectNetwork = chainId === arcTestnet.id;
 
@@ -147,7 +155,7 @@ export function WalletInfo({ musicVolume, setMusicVolume, sfxVolume, setSfxVolum
             </div>
 
             {
-              headerRightClass !== "" ? 
+              (headerRightClass !== '' && window.innerWidth < 768) ? 
               <>
 
                 <div className="sound-mobile-container">

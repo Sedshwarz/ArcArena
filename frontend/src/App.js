@@ -28,9 +28,32 @@ function App() {
   const [roomDetails, setRoomDetails] = useState(null);
   const [warningMessage, setWarningMessage] = useState('');
   const [isProfileChecked, setIsProfileChecked] = useState(false);
-  const [musicVolume, setMusicVolume] = useState(0);
-  const [sfxVolume, setSfxVolume] = useState(50);
   const audioRef = useRef(null);
+
+  const [musicVolume, setMusicVolume] = useState(0);
+
+  const [sfxVolume, setSfxVolume] = useState(() => {
+    const savedSfx = localStorage.getItem('sfxVolume');
+    return savedSfx !== null ? parseInt(savedSfx, 10) : 50;
+  });
+
+  useEffect(() => {
+    localStorage.setItem('sfxVolume', sfxVolume);
+  }, [sfxVolume]);
+
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.volume = musicVolume / 100;
+      
+      if (musicVolume > 0) {
+        audioRef.current.play().catch(e => console.log(e));
+      } else {
+        audioRef.current.pause();
+      }
+    }
+  }, [musicVolume]);
+
+
 
   useEffect(() => {
     if (audioRef.current) {

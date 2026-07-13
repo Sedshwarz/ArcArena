@@ -3,6 +3,7 @@ import '../style/Hangman.css';
 import { socket } from '../socket';
 import pressLetterAudio from '../../assets/sfx/pressLetter.mp3';
 import revealedWordAudio from '../../assets/sfx/revealedWord.mp3';
+import wrongAudio from '../../assets/sfx/wrong.mp3';
 
 import avatar1 from '../../assets/avatars/1.png';
 import avatar2 from '../../assets/avatars/2.png';
@@ -36,8 +37,7 @@ export function Hangman({ localRoom, isCreator, address, scores, onScoresUpdate,
   const [timer, setTimer] = useState(15);
   const [isGuessing, setIsGuessing] = useState(false);
   const [guessInput, setGuessInput] = useState('');
-  const prevIsRoundOver = useRef(localRoom?.gameState?.isRoundOver || false);
-  const [isGameOver, setIsGameOver] = useState(false); 
+  const [isGameOver, setIsGameOver] = useState(false);
 
 
   useEffect(() => {
@@ -50,18 +50,27 @@ export function Hangman({ localRoom, isCreator, address, scores, onScoresUpdate,
   const transitionRef = useRef(false);
 
   useEffect(() => {
+    let timeoutId;
     if (localRoom?.status === 'resolved' && !transitionRef.current) {
-      transitionRef.current = true; 
+      transitionRef.current = true;
       setIsGameOver(true);
-      
-      setTimeout(() => {
-        onGameOver();
+
+      timeoutId = setTimeout(() => {
+        if (typeof onGameOver === 'function') {
+          onGameOver();
+        }
       }, 1500);
     }
+    
+    return () => {
+      if (timeoutId) clearTimeout(timeoutId);
+    };
   }, [localRoom?.status, onGameOver]);
+
 
   useEffect(() => {
     const onStateUpdated = (data) => {
+      if (transitionRef.current) return;
       if (data.gameId === localRoom?.gameId) {
         setGameState(data.gameState);
       }
@@ -88,10 +97,10 @@ export function Hangman({ localRoom, isCreator, address, scores, onScoresUpdate,
   const category = gameState.category || "Waiting for game...";
   const actualWord = gameState.word || "";
   const guessedLetters = gameState.guessedLetters || [];
-  
+
   const myErrors = isCreator ? gameState.creatorErrors || 0 : gameState.opponentErrors || 0;
   const oppErrors = isCreator ? gameState.opponentErrors || 0 : gameState.creatorErrors || 0;
-  
+
   const myAddress = address?.toLowerCase();
   const currentTurn = gameState.turn?.toLowerCase();
   const isMyTurn = currentTurn === myAddress;
@@ -106,14 +115,28 @@ export function Hangman({ localRoom, isCreator, address, scores, onScoresUpdate,
     if (!isMyTurn) setIsGuessing(false);
   }, [isMyTurn]);
 
+
+  const prevScores = useRef(scores);
+
   useEffect(() => {
-    if (gameState.isRoundOver && !prevIsRoundOver.current && sfxVolume > 0) {
-      const audio = new Audio(revealedWordAudio);
-      audio.volume = sfxVolume / 100;
-      audio.play().catch(e => console.log("Audio play error:", e));
+    if (sfxVolume > 0 && gameState.isRoundOver) {
+      if (scores.me > prevScores.current.me) {
+        const audio = new Audio(revealedWordAudio);
+        audio.volume = sfxVolume / 100;
+        audio.play().catch(e => console.log(e));
+        prevScores.current = scores;
+      } else if (scores.opp > prevScores.current.opp) {
+        const audio = new Audio(wrongAudio);
+        audio.volume = sfxVolume / 100;
+        audio.play().catch(e => console.log(e));
+        prevScores.current = scores;
+      }
     }
-    prevIsRoundOver.current = !!gameState.isRoundOver;
-  }, [gameState.isRoundOver, sfxVolume]);
+    if (!gameState.isRoundOver) {
+      prevScores.current = scores;
+    }
+  }, [scores, gameState.isRoundOver, sfxVolume]);
+
 
   const playClickSound = () => {
     if (!sfxVolume || sfxVolume === 0) return;
@@ -134,21 +157,21 @@ export function Hangman({ localRoom, isCreator, address, scores, onScoresUpdate,
   const handleLetterClick = (letter) => {
     if (!isMyTurn || guessedLetters.includes(letter) || isGuessing) return;
     playClickSound();
-    
-    socket.emit('game_action', { 
-      gameId: localRoom?.gameId, 
-      playerAddress: address, 
-      actionData: { type: 'guess_letter', letter } 
+
+    socket.emit('game_action', {
+      gameId: localRoom?.gameId,
+      playerAddress: address,
+      actionData: { type: 'guess_letter', letter }
     });
   };
 
   const submitGuess = () => {
     if (guessInput && guessInput.trim().length > 0) {
       setIsGuessing(false);
-      socket.emit('game_action', { 
-        gameId: localRoom?.gameId, 
-        playerAddress: address, 
-        actionData: { type: 'guess_word', word: guessInput.trim().toUpperCase() } 
+      socket.emit('game_action', {
+        gameId: localRoom?.gameId,
+        playerAddress: address,
+        actionData: { type: 'guess_word', word: guessInput.trim().toUpperCase() }
       });
       setGuessInput('');
     }
@@ -157,7 +180,7 @@ export function Hangman({ localRoom, isCreator, address, scores, onScoresUpdate,
   return (
     <div className="game-wrap">
       <div className="hangman-container" >
-        
+
         <div className={`hangman-side ${isMyTurn ? 'active-turn' : ''}`}>
           <div className="hangman-side-top">
             <img src={AVATARS[myAvatar] || AVATARS[1]} alt="avatar" style={{ width: '50px', filter: 'drop-shadow(0 0 10px rgba(50,226,178,0.5))' }} />
@@ -170,7 +193,7 @@ export function Hangman({ localRoom, isCreator, address, scores, onScoresUpdate,
 
         <div className="hangman-center">
           <div className="category-text">Category: {category}</div>
-          
+
           <div className={`timer-badge ${timer <= 5 ? 'urgent' : ''}`}>
             00:{timer.toString().padStart(2, '0')}
           </div>
@@ -197,9 +220,9 @@ export function Hangman({ localRoom, isCreator, address, scores, onScoresUpdate,
                 {row.map(letter => {
                   const isGuessed = guessedLetters.includes(letter);
                   return (
-                    <button 
-                      key={letter} 
-                      className="key-btn" 
+                    <button
+                      key={letter}
+                      className="key-btn"
                       disabled={isGuessed || !isMyTurn}
                       onClick={() => handleLetterClick(letter)}
                     >
@@ -210,7 +233,7 @@ export function Hangman({ localRoom, isCreator, address, scores, onScoresUpdate,
               </div>
             ))}
           </div>
-          
+
           {isGuessing ? (
             <div className="guess-input-container">
               <input
@@ -247,4 +270,3 @@ export function Hangman({ localRoom, isCreator, address, scores, onScoresUpdate,
     </div>
   );
 }
-  

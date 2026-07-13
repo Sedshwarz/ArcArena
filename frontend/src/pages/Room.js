@@ -9,6 +9,10 @@ import { Hangman } from './games/Hangman';
 import { Battleship } from './games/Battleship';
 import './style/Room.css';
 
+import victoryAudio from '../assets/sfx/victory.mp3';
+import defeatAudio from '../assets/sfx/defeat.mp3';
+import claimedAudio from '../assets/sfx/claimed.mp3';
+
 import avatar1 from '../assets/avatars/1.png';
 import avatar2 from '../assets/avatars/2.png';
 import avatar3 from '../assets/avatars/3.png';
@@ -90,11 +94,22 @@ export function GlobalReclaimPrompt({ showWarning }) {
 
 
 
-const GameOverScreen = ({ room, isWinner, onNavigate, showWarning, localPlayerAddress, userBalanceNum }) => {
+const GameOverScreen = ({ room, isWinner, onNavigate, showWarning, localPlayerAddress, userBalanceNum, sfxVolume }) => {
     const { writeContractAsync } = useWriteContract();
     const publicClient = usePublicClient();
     const [isClaiming, setIsClaiming] = useState(false);
     const [claimStatus, setClaimStatus] = useState('Claim Prize');
+    const hasPlayedEndSound = useRef(false);
+
+    useEffect(() => {
+        if (sfxVolume > 0 && !hasPlayedEndSound.current) {
+            hasPlayedEndSound.current = true;
+            const soundToPlay = isWinner ? victoryAudio : defeatAudio;
+            const audio = new Audio(soundToPlay);
+            audio.volume = sfxVolume / 100;
+            audio.play().catch(e => console.log("Audio play error:", e));
+        }
+    }, [isWinner, sfxVolume]);
 
     const handleClaim = async () => {
         if (!isWinner || room.hasClaimed) return;
@@ -110,6 +125,12 @@ const GameOverScreen = ({ room, isWinner, onNavigate, showWarning, localPlayerAd
             await publicClient.waitForTransactionReceipt({ hash: claimHash });
             socket.emit('prize_claimed', { gameId: room.gameId });
             setClaimStatus('Claimed!');
+
+            if (sfxVolume > 0) {
+                const audio = new Audio(claimedAudio);
+                audio.volume = sfxVolume / 100;
+                audio.play().catch(e => console.log("Audio play error:", e));
+            }
         } catch (error) {
             console.error("Claim error:", error);
             showWarning(error.shortMessage || "Failed to claim prize.");
@@ -160,7 +181,7 @@ const GameOverScreen = ({ room, isWinner, onNavigate, showWarning, localPlayerAd
     };
 
     return (
-        <div className="game-over-container" style={{order: 0}}>
+        <div className="game-over-container" style={{ order: 0 }}>
             {
                 room.scores.creator !== 0 || room.scores.opponent !== 0 ?
                     <h2 className="game-over-title got-2">
@@ -296,6 +317,9 @@ export function Room({ roomDetails: initialRoomDetails, onNavigate, showWarning,
         const handleRoomUpdate = (updatedRoom) => {
             setRoom(prevRoom => {
                 if (prevRoom && prevRoom.gameId === updatedRoom.gameId) {
+                    if (prevRoom.status === 'resolved' && updatedRoom.status !== 'resolved') {
+                        return prevRoom; 
+                    }
                     return updatedRoom;
                 }
                 return prevRoom;
@@ -435,21 +459,28 @@ export function Room({ roomDetails: initialRoomDetails, onNavigate, showWarning,
 
 
     useEffect(() => {
-        if (room.status === 'playing' && room.creatorReady && room.opponentReady && countdown === null) {
+        if (!isGameActive && room.status === 'playing' && room.creatorReady && room.opponentReady && countdown === null) {
             setCountdown(3);
         }
-    }, [room.status, room.creatorReady, room.opponentReady, countdown]);
+    }, [isGameActive, room.status, room.creatorReady, room.opponentReady, countdown]);
 
 
     useEffect(() => {
         if (countdown > 0) {
+            if (room.status !== 'playing') {
+                setCountdown(null);
+                return;
+            }
             const timer = setTimeout(() => setCountdown(c => (c !== null ? c - 1 : null)), 1000);
             return () => clearTimeout(timer);
         } else if (countdown === 0) {
-            setIsGameActive(true);
+            if (room.status === 'playing') {
+                setIsGameActive(true);
+            }
             setCountdown(null);
         }
-    }, [countdown]);
+    }, [countdown, room.status]);
+
 
     const isCreator = useMemo(() => address?.toLowerCase() === room.creatorAddress.toLowerCase(), [address, room.creatorAddress]);
     useEffect(() => {
@@ -476,7 +507,7 @@ export function Room({ roomDetails: initialRoomDetails, onNavigate, showWarning,
             showWarning('Failed to copy link.');
         });
     };
-
+    
 
     const handleLeaveRoom = async () => {
         const isLocalCreator = address?.toLowerCase() === room?.creatorAddress?.toLowerCase();
@@ -560,7 +591,6 @@ export function Room({ roomDetails: initialRoomDetails, onNavigate, showWarning,
             }
         }
     };
-    
 
     const renderGameComponent = () => {
         if (abortedRematchId) {
@@ -614,7 +644,7 @@ export function Room({ roomDetails: initialRoomDetails, onNavigate, showWarning,
 
         if (room.status === 'resolved') {
             const isWinner = room.winnerAddress?.toLowerCase() === address?.toLowerCase();
-            return <GameOverScreen room={room} isWinner={isWinner} onNavigate={onNavigate} showWarning={showWarning} localPlayerAddress={address} userBalanceNum={userBalanceNum} />;
+            return <GameOverScreen room={room} isWinner={isWinner} onNavigate={onNavigate} showWarning={showWarning} localPlayerAddress={address} userBalanceNum={userBalanceNum} sfxVolume={sfxVolume} />;
         }
 
         if (room.status === 'playing') {
@@ -693,7 +723,7 @@ export function Room({ roomDetails: initialRoomDetails, onNavigate, showWarning,
                                 <i className="fas fa-globe"></i> Public
                             </span>
                     }
-                    <button className="leave-room-button" onClick={handleLeaveRoom} disabled={isLeaving || room.status === 'resolved' || !!abortedRematchId}>
+                    <button className="leave-room-button" onClick={handleLeaveRoom} disabled={isLeaving || room.status === 'resolved' || !!abortedRematchId || countdown > 0}>
                         {isLeaving ? 'LEAVING...' : 'LEAVE'}
                     </button>
                 </div>
