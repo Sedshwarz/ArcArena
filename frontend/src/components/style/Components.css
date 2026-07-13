@@ -139,6 +139,59 @@
   margin-bottom: 10px;
 }
 
+.sound-mobile-container{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px 15px;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+.sound-mobile-container .smcw{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.sound-mobile-container label.smcmv{
+  font-size: 0.8rem;
+  margin-top: 4px;
+}
+.sound-toggle{
+  height: 26px;
+  width: 86px;
+  cursor: pointer;
+  position: relative;
+  background-color: rgba(23, 20, 26, 0.459);
+  border: 2px solid #241a31;
+  border-radius: 4px;
+  box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.6);
+}
+.sound-toggle::after{
+  content: "OFF";
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.6rem;
+  color: #979797;
+  height: 26px;
+  width: 50%;
+  border-radius: 4px;
+  background-color: #494b4e;
+  position: absolute;
+  left: 0;
+  top: 0;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s ease;
+}
+.sound-toggle.active-tg::after{
+  content: "ON";
+  transform: translateX(100%);
+  color: #ffff00;
+  background-color: #d90429;
+}
 
 
 .balance-box, .dropdown-trigger {

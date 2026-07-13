@@ -22,6 +22,8 @@ export function WalletInfo({ musicVolume, setMusicVolume, sfxVolume, setSfxVolum
   const [isOpen, setIsOpen] = useState(false);
   const [headerRightClass, setHeaderRightClass] = useState('');
   const dropdownRef = useRef(null);
+  const [mscToggle, setMscToggle] = useState(false);
+  const [sfxToggle, setSfxToggle] = useState(false);
 
   const isCorrectNetwork = chainId === arcTestnet.id;
 
@@ -144,17 +146,42 @@ export function WalletInfo({ musicVolume, setMusicVolume, sfxVolume, setSfxVolum
               </span>
             </div>
 
-            <div style={{ padding: '10px 15px', borderBottom: '1px solid rgba(255,255,255,0.2)' }}>
-              <label className="msc-volume">
-                Music <span>{musicVolume}%</span>
-              </label>
-              <input className="msc-slider" type="range" min="0" max="100" value={musicVolume} onChange={e => setMusicVolume(e.target.value)} />
+            {
+              headerRightClass !== "" ? 
+              <>
 
-              <label className="msc-volume">
-                SFX <span>{sfxVolume}%</span>
-              </label>
-              <input className="msc-slider" type="range" min="0" max="100" value={sfxVolume} onChange={e => setSfxVolume(e.target.value)} />
-            </div>
+                <div className="sound-mobile-container">
+                  <div className="smcw">
+                    <label className="msc-volume smcmv">Music</label>
+                    <div 
+                      className={`sound-toggle ${mscToggle && 'active-tg'}`} 
+                      onClick={()=>{setMscToggle(!mscToggle); setMusicVolume(!mscToggle ? 100 : 0);}}>
+                    </div>
+                  </div>
+
+                  <div className="smcw">
+                    <label className="msc-volume smcmv">SFX</label>
+                    <div 
+                      className={`sound-toggle ${sfxToggle && 'active-tg'}`} 
+                      onClick={()=>{setSfxToggle(!sfxToggle); setSfxVolume(!sfxToggle ? 100 : 0);}}>
+                    </div>
+                  </div>
+                </div>
+
+              </> :
+
+                <div style={{ padding: '10px 15px', borderBottom: '1px solid rgba(255,255,255,0.2)' }}>
+                  <label className="msc-volume">
+                    Music <span>{musicVolume}%</span>
+                  </label>
+                  <input className="msc-slider" type="range" min="0" max="100" value={musicVolume} onChange={e => setMusicVolume(e.target.value)} />
+
+                  <label className="msc-volume">
+                    SFX <span>{sfxVolume}%</span>
+                  </label>
+                  <input className="msc-slider" type="range" min="0" max="100" value={sfxVolume} onChange={e => setSfxVolume(e.target.value)} />
+                </div>
+            }
 
             {
               !isInRoom && (
