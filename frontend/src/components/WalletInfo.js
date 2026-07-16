@@ -86,13 +86,13 @@ export function WalletInfo({ musicVolume, setMusicVolume, sfxVolume, setSfxVolum
 
   const { data: nativeBalance } = useBalance({
     address,
-    query: { enabled: !!address && isCorrectNetwork, refetchInterval: 2000 },
+    query: { enabled: !!address && isCorrectNetwork, refetchInterval: 15000 },
   });
 
   const { data: tokenBalance } = useBalance({
     address,
     token: USDC_ADDRESS,
-    query: { enabled: !!address && isCorrectNetwork, refetchInterval: 2000 },
+    query: { enabled: !!address && isCorrectNetwork, refetchInterval: 15000 },
   });
 
   const formatAddress = (addr) => {
