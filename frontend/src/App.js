@@ -119,8 +119,25 @@ function App() {
   }, []);
 
   const renderPage = () => {
-    if (isConnecting || isReconnecting) return null;
-    if (isConnected && !isProfileChecked) return null;
+    
+    const LoadingScreen = ({ text }) => (
+      <div className="loading-container">
+        <h2 className="glitch-text" style={{ fontSize: '1.5rem', color: '#00ffff', letterSpacing: '2px', margin: 0 }}>
+          {text}
+        </h2>
+        <div className="arcade-progress-bar">
+          <div className="arcade-progress-fill"></div>
+        </div>
+      </div>
+    );
+
+    if (isConnecting || isReconnecting) {
+      return <LoadingScreen text="INITIALIZING SYSTEM..." />;
+    }
+    
+    if (isConnected && !isProfileChecked) {
+      return <LoadingScreen text="LOADING PROFILE..." />;
+    }
     
     if (!isConnected) return <ConnectButtonComp />;
 
@@ -180,5 +197,4 @@ function App() {
     </div>
   );
 }
-
 export default App;
